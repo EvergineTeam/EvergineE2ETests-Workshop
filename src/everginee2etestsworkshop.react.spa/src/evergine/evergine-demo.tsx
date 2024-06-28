@@ -97,7 +97,7 @@ function EvergineDemo(): JSX.Element {
     const r = getRandomHex();
     const g = getRandomHex();
     const b = getRandomHex();
-    const color = `#${r}${g}${b}`;
+    const color = `#${r}${g}${b}FF`;
     window.App.webEventsProxy.changeColor(color);
     setMessage(`Changing the color of the teapot: ${color}`);
   }

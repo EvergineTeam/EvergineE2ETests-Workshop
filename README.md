@@ -15,7 +15,7 @@ The workshop is divided into different steps, with each step corresponding to a 
 
 Recommended:
 
-- Visual Studio Code with the Playwright Test for VSCode extension (ms-playwright.playwright)
+- Visual Studio Code with the Playwright Test for VSCode extension (ms-playwright.playwright).
 
 ## 1. Creation of Evergine Project
 
@@ -31,18 +31,24 @@ Recommended:
 
 - Open the everginee2etestsworkshop.react.spa folder with Visual Studio Code.
 
-- Press F1 to open the command palette and select the "Test: Install playwright" option. In the checkboxes, only select Chromium and Firefox. (Alternatively, if you don't have VSCode and the Playwright extension, you can run it from the command line: `npm init playwright@latest`)
+- Press F1 to open the command palette and select the "Test: Install playwright" option. In the checkboxes, only select Chromium and Firefox. (Alternatively, if you don't have VSCode and the Playwright extension, you can run it from the command line: `npm init playwright@latest`).
 
 - Test the following features from the Testing tab:
-  - Run the example tests
-  - Select the execution browsers
-  - Show browser
-  - Show trace viewer
-  - Debug a test
-  - Pick locators
-  - Tune locators
-  - Record tests
+  - Run the example tests.
+  - Select the execution browsers.
+  - Show browser.
+  - Show trace viewer.
+  - Debug a test.
+  - Pick locators.
+  - Tune locators.
+  - Record tests.
 
 - Record two new tests for the teapot (teapot.spec.ts) opening this URL <http://localhost:3000>:
-  - Change color
-  - Get current rotation
+  - Change color.
+  - Get current rotation.
+
+## 3. Capture Scene State
+
+- Comment out the code of the OnChangeColor event in EvergineDemoEvents.cs and run the tests again. Why are they still passing?
+
+- Improve the tests to capture the actual state of the Evergine scene.

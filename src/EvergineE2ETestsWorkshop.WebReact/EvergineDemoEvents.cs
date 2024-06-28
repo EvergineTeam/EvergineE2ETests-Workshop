@@ -8,6 +8,8 @@ using Evergine.Framework.Services;
 using Evergine.Mathematics;
 using EvergineE2ETestsWorkshop.WebReact.AppEvents;
 using EvergineE2ETestsWorkshop.WebReact.WebEvents;
+using System.Text.Json;
+using System;
 
 namespace EvergineE2ETestsWorkshop.WebReact
 {
@@ -45,20 +47,31 @@ namespace EvergineE2ETestsWorkshop.WebReact
 
         public static void SubscribeToWebEvents(WebEventsService webEventsService)
         {
-            webEventsService.OnChangeColor += WebEventsServiceOnOnChangeColor;
+            webEventsService.OnChangeColor += WebEventsServiceOnChangeColor;
         }
 
         public static void UnsubscribeToWebEvents(WebEventsService webEventsService)
         {
             if (webEventsService != null)
             {
-                webEventsService.OnChangeColor -= WebEventsServiceOnOnChangeColor;
+                webEventsService.OnChangeColor -= WebEventsServiceOnChangeColor;
             }
         }
 
-        private static void WebEventsServiceOnOnChangeColor(object sender, ChangeColorEventArgs e)
+        private static void WebEventsServiceOnChangeColor(object sender, ChangeColorEventArgs e)
         {
             Material.BaseColor = Color.FromHex(e.Color);
+            var testResult = new TestResultDto()
+            {
+                TeapotColor = Material.BaseColor.ToHexColorCode()
+            };
+            PrintTestResult(testResult);
+        }
+        
+        private static void PrintTestResult(TestResultDto testResult)
+        {
+            var json = JsonSerializer.Serialize(testResult, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            Console.WriteLine($"TestResult: {json}");
         }
 
         public static void CheckCameraClick(Display display, AppEventsService appEventsService)
@@ -82,7 +95,14 @@ namespace EvergineE2ETestsWorkshop.WebReact
             var rotation = TeapotTransform3D.LocalRotation.Y >= 0
                 ? TeapotTransform3D.LocalRotation.Y
                 : MathHelper.TwoPi + TeapotTransform3D.LocalRotation.Y;
-            appEventsService?.SendCameraClick(MathHelper.ToDegrees(rotation));
+            var degrees = MathHelper.ToDegrees(rotation);
+            appEventsService?.SendCameraClick(degrees);
+            
+            var testResult = new TestResultDto()
+            {
+                TeapotRotation = degrees
+            };
+            PrintTestResult(testResult);
         }
     }
 }
