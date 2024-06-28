@@ -1,0 +1,30 @@
+.Evergine-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Evergine-container {
+    margin: 10px;
+}
+
+.Button {
+    margin: 2px;
+    padding: 6px;
+    width: 150px;
+    background-color: #61dafb;
+    color: black;
+    cursor: pointer;
+    border-color: grey;
+    font-size: calc(10px + 1vmin);
+}
+
+.Button:disabled {
+    cursor: default;
+    background-color: gray;
+}
+
+.Input {
+    width: 294px;
+}
