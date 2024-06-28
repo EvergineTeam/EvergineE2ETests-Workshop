@@ -58,3 +58,7 @@ Recommended:
 - Create a new event from React to Evergine called setTestMode that allow to activate and deactivate test results.
 
 - Activate TestMode before executing the tests.
+
+## 5. Add auto execution of server for tests
+
+- Modify the playwright configuration to automatically execute the application server if it is not already running.

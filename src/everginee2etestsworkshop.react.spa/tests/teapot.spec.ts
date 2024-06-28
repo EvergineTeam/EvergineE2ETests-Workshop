@@ -51,7 +51,7 @@ test.describe('Teapot tests', () => {
   }
 
   async function goToPageInTestMode(page: Page) {
-    await page.goto("http://localhost:3000/");
+    await page.goto("http://localhost:5000/");
     await page.getByRole("button", { name: "From React to Wasm" }).isEnabled();
     page.evaluate("window.App.webEventsProxy.setTestMode(true)");
   }
