@@ -26,3 +26,23 @@ Recommended:
 - Open the EvergineE2ETestsWorkshop.WebReact.sln solution existing in src.
 
 - Run the solution and verify that the demo works fine by clicking on "From React to Wasm" and clicking on the teapot.
+
+## 2. Add Playwright Tests
+
+- Open the everginee2etestsworkshop.react.spa folder with Visual Studio Code.
+
+- Press F1 to open the command palette and select the "Test: Install playwright" option. In the checkboxes, only select Chromium and Firefox. (Alternatively, if you don't have VSCode and the Playwright extension, you can run it from the command line: `npm init playwright@latest`)
+
+- Test the following features from the Testing tab:
+  - Run the example tests
+  - Select the execution browsers
+  - Show browser
+  - Show trace viewer
+  - Debug a test
+  - Pick locators
+  - Tune locators
+  - Record tests
+
+- Record two new tests for the teapot (teapot.spec.ts) opening this URL <http://localhost:3000>:
+  - Change color
+  - Get current rotation
