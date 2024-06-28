@@ -15,6 +15,8 @@ namespace EvergineE2ETestsWorkshop.WebReact
 {
     public static class EvergineDemoEvents
     {
+        public static bool TestsResultsEnabled;
+
         private static StandardMaterial Material;
         private static Transform3D TeapotTransform3D;
 
@@ -48,6 +50,7 @@ namespace EvergineE2ETestsWorkshop.WebReact
         public static void SubscribeToWebEvents(WebEventsService webEventsService)
         {
             webEventsService.OnChangeColor += WebEventsServiceOnChangeColor;
+            webEventsService.OnSetTestMode += WebEventsServiceOnSetTestMode;
         }
 
         public static void UnsubscribeToWebEvents(WebEventsService webEventsService)
@@ -55,6 +58,7 @@ namespace EvergineE2ETestsWorkshop.WebReact
             if (webEventsService != null)
             {
                 webEventsService.OnChangeColor -= WebEventsServiceOnChangeColor;
+                webEventsService.OnSetTestMode -= WebEventsServiceOnSetTestMode;
             }
         }
 
@@ -67,9 +71,20 @@ namespace EvergineE2ETestsWorkshop.WebReact
             };
             PrintTestResult(testResult);
         }
+
+        private static void WebEventsServiceOnSetTestMode(object sender, SetTestModeEventArgs e)
+        {
+            TestsResultsEnabled = e.Activated;
+            Console.WriteLine($"Test mode {(TestsResultsEnabled ? "ON" : "OFF")}");
+        }
         
         private static void PrintTestResult(TestResultDto testResult)
         {
+            if (!TestsResultsEnabled)
+            {
+                return;
+            }
+
             var json = JsonSerializer.Serialize(testResult, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             Console.WriteLine($"TestResult: {json}");
         }

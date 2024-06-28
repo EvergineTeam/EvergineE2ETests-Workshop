@@ -52,3 +52,9 @@ Recommended:
 - Comment out the code of the OnChangeColor event in EvergineDemoEvents.cs and run the tests again. Why are they still passing?
 
 - Improve the tests to capture the actual state of the Evergine scene.
+
+## 4. Allow to Deactivate Test Results
+
+- Create a new event from React to Evergine called setTestMode that allow to activate and deactivate test results.
+
+- Activate TestMode before executing the tests.

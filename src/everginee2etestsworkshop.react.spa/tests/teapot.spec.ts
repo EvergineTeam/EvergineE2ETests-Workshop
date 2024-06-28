@@ -20,7 +20,7 @@ test.describe('Teapot tests', () => {
 
   test('change color', async ({ page }) => {
     // Arrange
-    await page.goto('http://localhost:3000/');
+    await goToPageInTestMode(page);
     
     // Act
     await page.getByRole('button', { name: 'From React to Wasm' }).click();
@@ -33,7 +33,7 @@ test.describe('Teapot tests', () => {
 
   test('get current rotation', async ({ page }) => {
     // Arrange
-    await page.goto('http://localhost:3000/');
+    await goToPageInTestMode(page);
     
     // Act
     await page.locator('#evergine-canvas').click({ position: { x: 112, y: 79 } });
@@ -48,6 +48,12 @@ test.describe('Teapot tests', () => {
     if (msg.type() === "log" && msg.text().startsWith("TestResult")) {
       testResult = JSON.parse(msg.text().replace("TestResult: ", ""));
     }
+  }
+
+  async function goToPageInTestMode(page: Page) {
+    await page.goto("http://localhost:3000/");
+    await page.getByRole("button", { name: "From React to Wasm" }).isEnabled();
+    page.evaluate("window.App.webEventsProxy.setTestMode(true)");
   }
 
   async function getInputTextWithRegExp(page: Page, regExp: RegExp) {

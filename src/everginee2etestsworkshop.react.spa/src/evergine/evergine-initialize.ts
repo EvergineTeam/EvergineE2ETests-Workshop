@@ -15,6 +15,7 @@ declare global {
 
   interface WebEventsProxy {
     changeColor: (color: string) => void;
+    setTestMode: (activated: boolean) => void;
   }
 }
 
@@ -25,6 +26,10 @@ function addCustomEvents() {
 
   window.App.webEventsProxy.changeColor = (color: string): void => {
     window.Utils.invoke("ChangeColor", color);
+  };
+
+  window.App.webEventsProxy.setTestMode = (activated: boolean): void => {
+    window.Utils.invoke("SetTestMode", activated);
   };
 }
 

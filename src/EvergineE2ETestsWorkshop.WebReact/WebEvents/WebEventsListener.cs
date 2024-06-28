@@ -40,5 +40,11 @@ public static class WebEventsListener
     {
         webEventsService.SendChangeColor(color);
     }
+
+    [JSInvokable("EvergineE2ETestsWorkshop.WebReact.WebEvents.WebEventsListener:SetTestMode")]
+    public static void SetTestMode(bool activated)
+    {
+        webEventsService.SendSetTestMode(activated);
+    }
 }
 
