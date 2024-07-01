@@ -74,3 +74,9 @@ Recommended:
 - Modify EvergineDemoEvents.cs to create 10 FlightHelmet models after creating the teapot.
 
 - What happens when there is no GPU available?
+
+## 8. Run All Tests in the Same Page
+
+- Use BeforeAll to load a new page and run all tests in that page.
+
+- Run all tests on the same file sequentially
