@@ -1,0 +1,64 @@
+trigger:
+  branches:
+    include:
+      - main
+ 
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solutionDirectory: "$(Build.SourcesDirectory)/src"
+  spaDir: "$(solutionDirectory)/everginee2etestsworkshop.react.spa"
+  hostDir: "$(solutionDirectory)/Everginee2etestsworkshop.Host"
+  e2eTestResultsDir: "$(spaDir)/test-results"
+  artifactName: "EvergineE2ETestsWorkshop"
+
+steps:
+  - task: NodeTool@0
+    displayName: "Use NodeJs v16.20.0"
+    inputs:
+        versionSource: "spec"
+        versionSpec: "16.20.0"
+    
+  - task: UseDotNet@2
+    displayName: "Use .Net8 Core SDK"
+    inputs:
+      version: "8.0.204"    
+
+  - task: DotNetCoreCLI@2
+    displayName: "Install WasmTools"
+    inputs:
+        command: "custom"
+        custom: "workload"
+        arguments: "install wasm-tools --skip-manifest-update"
+
+  - script: "npm ci && npx playwright install chromium"
+    displayName: "Install Playwright browsers"
+    workingDirectory: "$(spaDir)"
+
+  - script: "npm run test:e2e"
+    displayName: "Run Playwright tests"
+    workingDirectory: "$(spaDir)"
+    env:
+        CI: "true"
+
+  - task: PublishTestResults@2
+    displayName: "Publish Playwright test results"
+    inputs:
+        searchFolder: "$(e2eTestResultsDir)"
+        testResultsFormat: "JUnit"
+        testResultsFiles: "e2e-junit-results.xml"
+        mergeTestResults: true
+        failTaskOnFailedTests: true
+        testRunTitle: "End-To-End Tests"
+    condition: succeededOrFailed()
+
+  - publish: "$(e2eTestResultsDir)"
+    displayName: "Publish E2E test trace files"
+    artifact: "e2e-test-results"
+    condition: failed()
+
+  - publish: $(hostDir)/bin/Release/net8.0/publish
+    displayName: "Publish artifact"
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+    artifact: $(artifactName)

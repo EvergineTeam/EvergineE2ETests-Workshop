@@ -29,7 +29,7 @@
     "evergine:copy:assets": "ncp ../EvergineE2ETestsWorkshop.WebReact/bin/%npm_config_configuration%/net8.0/wwwroot/assets.js public/assets.js || echo Nothing to copy",
     "evergine:copy:content": "ncp ../EvergineE2ETestsWorkshop.WebReact/bin/%npm_config_configuration%/net8.0/wwwroot/Content public/Content || echo Nothing to copy",
     "evergine:copy:evergine": "ncp ../EvergineE2ETestsWorkshop.WebReact/js/evergine.js public/evergine.js || echo Nothing to copy",
-    "test:e2e": "npx playwright test",
+    "test:e2e": "npx playwright test --project=chromium",
     "runhostforteste2e": "dotnet build ..\\EvergineE2ETestsWorkshop.WebReact\\EvergineE2ETestsWorkshop.WebReact.csproj --configuration Release && dotnet publish ../EvergineE2ETestsWorkshop.Host/EvergineE2ETestsWorkshop.Host.csproj --configuration Release && cd ../EvergineE2ETestsWorkshop.Host/bin/Release/net8.0/publish && EvergineE2ETestsWorkshop.Host.exe"
   },
   "eslintConfig": {

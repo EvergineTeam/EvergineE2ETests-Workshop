@@ -59,6 +59,10 @@ Recommended:
 
 - Activate TestMode before executing the tests.
 
-## 5. Add auto execution of server for tests
+## 5. Add Auto Execution of Server for Tests
 
 - Modify the playwright configuration to automatically execute the application server if it is not already running.
+
+## 6. Add Continuous Integration Pipeline
+
+- Add CI pipeline to run the end-to-end tests in Azure DevOps
