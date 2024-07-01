@@ -9,7 +9,8 @@ pool:
 variables:
   solutionDirectory: "$(Build.SourcesDirectory)/src"
   spaDir: "$(solutionDirectory)/everginee2etestsworkshop.react.spa"
-  hostDir: "$(solutionDirectory)/Everginee2etestsworkshop.Host"
+  hostDir: "$(solutionDirectory)/EvergineE2ETestsWorkshop.Host"
+  hostProjectFile: "$(hostDir)/EvergineE2ETestsWorkshop.Host.csproj"
   e2eTestResultsDir: "$(spaDir)/test-results"
   artifactName: "EvergineE2ETestsWorkshop"
 
@@ -32,7 +33,22 @@ steps:
         custom: "workload"
         arguments: "install wasm-tools --skip-manifest-update"
 
-  - script: "npm ci && npx playwright install chromium"
+  - script: |
+      cp ~/.nuget/packages/evergine.targets/2023.9.28.1837/tools/net6.0/runtimes/linux-x64/native/* $(Build.SourcesDirectory)/../../_tool/dotnet/shared/Microsoft.NETCore.App/8.0.4
+      cp $(Build.SourcesDirectory)/libs/msdf-atlas-gen/linux-x64/msdf-atlas-gen ~/.nuget/packages/evergine.targets/2023.9.28.1837/tools/net6.0/Libraries/Windows
+    displayName: "Copy Linux native libraries (workaround)"
+    condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))          
+    workingDirectory: "$(spaDir)" 
+
+  - task: DotNetCoreCLI@2
+    displayName: "Remove spa reference from host project in Linux (workaround)"
+    condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))          
+    inputs:
+      command: "custom"
+      custom: "remove"
+      arguments: "$(hostProjectFile) reference ../everginee2etestsworkshop.react.spa/everginee2etestsworkshop.react.spa.esproj"
+
+  - script: "npm ci && npx playwright install chromium firefox"
     displayName: "Install Playwright browsers"
     workingDirectory: "$(spaDir)"
 

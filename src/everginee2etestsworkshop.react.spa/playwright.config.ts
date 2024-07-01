@@ -35,12 +35,13 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome']/*, launchOptions: { args: ['--disable-gpu'] } */},
+      use: { ...devices['Desktop Chrome']/*, launchOptions: { args: ['--disable-gpu'] } */ },
     },
 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      testIgnore: 'hardware-configuration.spec.ts',
     },
 
     // {
@@ -71,7 +72,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run runhostforteste2e',
+    command: process.platform === 'win32' ? 'npm run runhostforteste2e:win' : 'npm run runhostforteste2e:linux',
     url: 'http://localhost:5000',
     reuseExistingServer: !process.env.CI,
     timeout: 300 * 1000,

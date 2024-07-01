@@ -79,8 +79,12 @@ Recommended:
 
 - Use BeforeAll to load a new page and run all tests in that page.
 
-- Run all tests on the same file sequentially
+- Run all tests on the same file sequentially.
 
-## 9. Run CI tests on GPU
+## 9. Run CI Tests on GPU
 
-- Modify pool in CI pipeline to use a Windows machine with GPU
+- Modify pool in CI pipeline to use a Windows machine with GPU.
+
+## 10. Modify CI Pipeline to Run on Linux
+
+- Add several workarounds to be able to build and run the project on Linux.
