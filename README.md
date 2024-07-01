@@ -65,4 +65,12 @@ Recommended:
 
 ## 6. Add Continuous Integration Pipeline
 
-- Add CI pipeline to run the end-to-end tests in Azure DevOps
+- Add CI pipeline to run the end-to-end tests in Azure DevOps.
+
+## 7. Add FlightHelmet Models to the Scene
+
+- Add FlightHelmet model to Evergine project.
+
+- Modify EvergineDemoEvents.cs to create 10 FlightHelmet models after creating the teapot.
+
+- What happens when there is no GPU available?

@@ -66,6 +66,7 @@ public class Program
                 scene.Closed += Scene_Closed;
 
                 EvergineDemoEvents.CreateTeapot(scene);
+                EvergineDemoEvents.CreateFlightHelmets(scene);
                 EvergineDemoEvents.SubscribeToWebEvents(Application.Container.Resolve<WebEventsService>());
 
                 appEventsService = Application.Container.Resolve<AppEventsService>();

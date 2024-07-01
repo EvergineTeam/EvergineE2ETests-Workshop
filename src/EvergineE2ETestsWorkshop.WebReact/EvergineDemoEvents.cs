@@ -10,6 +10,7 @@ using EvergineE2ETestsWorkshop.WebReact.AppEvents;
 using EvergineE2ETestsWorkshop.WebReact.WebEvents;
 using System.Text.Json;
 using System;
+using Random = Evergine.Framework.Services.Random;
 
 namespace EvergineE2ETestsWorkshop.WebReact
 {
@@ -45,6 +46,23 @@ namespace EvergineE2ETestsWorkshop.WebReact
                 .AddComponent(TeapotTransform3D)
                 .AddComponent(new Spinner() { AxisIncrease = Vector3.UnitY / 2 });
             scene.Managers.EntityManager.Add(teapot);
+        }
+
+        public static void CreateFlightHelmets(Scene scene)
+        {
+            var assetsService = Application.Current.Container.Resolve<AssetsService>();
+            var model = assetsService.Load<Model>(EvergineContent.Models.FlightHelmet.FlightHelmet_gltf);
+            var random = new Random(0);
+
+            for (var i = 0; i < 10; i++)
+            {
+                var helmet = model.InstantiateModelHierarchy(assetsService)
+                    .AddComponent(new Spinner() { AxisIncrease = Vector3.UnitY });
+                var transform = helmet.FindComponent<Transform3D>();
+                transform.Position = new Vector3(random.Next(-2, 2), random.Next(-2, 2), random.Next(-2, 2));
+                transform.Rotation = new Vector3(0f, random.NextRotation(), 0f);
+                scene.Managers.EntityManager.Add(helmet);
+            }
         }
 
         public static void SubscribeToWebEvents(WebEventsService webEventsService)

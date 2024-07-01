@@ -66,8 +66,8 @@ function EvergineDemo(): JSX.Element {
         {canvasActivated && (
           <EvergineCanvas
             canvasId={EVERGINE_CANVAS_ID}
-            width={300}
-            height={size.height/4}
+            width={size.width - 20}
+            height={size.height/2}
           />
         )}
       </div>

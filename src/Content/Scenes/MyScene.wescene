@@ -153,7 +153,7 @@ Items:
         Id: bb44cd62-4d92-418a-8a42-bbc2ed2b6f07
         AsignedTo: Default
         IsEnabled: true
-        Material: e98a34e7-4a77-48f6-be9c-3e4e3ac253a5
+        Material: 437c77b6-328a-4c93-9aed-1799c49c38ef
         UseCopy: false
       - !Evergine.Components.Graphics3D.SphereMesh,Evergine.Components
         Id: 3ef37285-f016-4173-bbf0-278ec1624224
@@ -195,7 +195,7 @@ Managers:
     IsEnabled: true
   - !Evergine.Framework.Managers.EntityManager,Evergine.Framework
     Id: 54e6745a-92b2-4006-a947-cb3ea9b4e10f
-    IsEnabled: true    
+    IsEnabled: true
   - !Evergine.Framework.Managers.BehaviorManager,Evergine.Framework
     Id: 5ae9e102-b637-4820-8f10-68680d16ffaf
     IsEnabled: true

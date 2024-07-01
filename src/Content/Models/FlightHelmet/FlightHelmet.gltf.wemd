@@ -1,0 +1,41 @@
+!Evergine.Assets.Exporters.ModelMetaFile,Evergine.Assets
+Id: fe8ff3d4-89ee-4c13-bd72-cfae531672cb
+Clips: []
+DefaultProfile:
+  ExcludeAsset: false
+  Name: null
+  Platform: Undefined
+ExportAnimations: true
+ExportAsRaw: false
+GenerateTangentSpace: true
+Profiles: {}
+Source:
+  Header:
+    Id: fc0c8112-ad40-40b4-b0e6-aec4d23f1e64
+    IsCompressed: true
+  LastModified: 0001-01-01T00:00:00.0000000
+  ModelInfo:
+    Id: 5f77db9e-db7c-4d6a-9fbc-bf0d3673b3fb
+    AnimationTracks: []
+    EmbeddedResources: null
+    Materials:
+      - Item1: HoseMat
+        Item2: 6c3415e3-2067-4028-92de-68de5f6df307
+      - Item1: RubberWoodMat
+        Item2: 221db1ea-1bd6-4a69-a011-4d78db2ca488
+      - Item1: GlassPlasticMat
+        Item2: ffe00af3-7782-46a9-8356-02f619d3f26b
+      - Item1: MetalPartsMat
+        Item2: c86acc22-f138-4ba5-a399-ea2847a05d80
+      - Item1: LeatherPartsMat
+        Item2: cdc98b0d-70f8-4267-87e1-dcd040fb0fae
+      - Item1: LensesMat
+        Item2: 612753e6-74cf-421c-b5ef-20e9646b7057
+    Nodes:
+      - Hose_low
+      - RubberWood_low
+      - GlassPlastic_low
+      - MetalParts_low
+      - LeatherParts_low
+      - Lenses_low
+SwapWindingOrder: false
